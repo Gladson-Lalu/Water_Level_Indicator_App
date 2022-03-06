@@ -14,7 +14,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    double indicatorSize = MediaQuery.of(context).size.width / 1.34;
+    double indicatorSize = MediaQuery.of(context).size.width / 1.2;
     int indicatorValue = 43;
     return Scaffold(
       appBar: AppBar(
@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage> {
         title: const Text(
           'WaterTrack',
           style: TextStyle(
-              color: Color(0xFF003459),
+              color: Color(0xFF3A4750),
               fontSize: 24,
               fontWeight: FontWeight.w900,
               letterSpacing: 1.5,
@@ -53,32 +53,42 @@ class _HomePageState extends State<HomePage> {
       ),
       backgroundColor: theme_color.background,
       body: Center(
-          child: SizedBox(
+          child: Container(
+        decoration: BoxDecoration(
+            borderRadius: const BorderRadius.all(Radius.circular(200)),
+            color: Colors.transparent,
+            boxShadow: [
+              BoxShadow(
+                  color: Colors.black.withOpacity(0.5),
+                  blurRadius: 5,
+                  spreadRadius: 1)
+            ]),
         width: indicatorSize,
         height: indicatorSize,
         child: LiquidCircularProgressIndicator(
+          borderColor: theme_color.indicatorWaterColor,
+          borderWidth: 1,
           value: indicatorValue / 100,
-          valueColor: const AlwaysStoppedAnimation(Color(0xff00a8e8)),
-          borderColor: const Color(0xff007ea7),
-          borderWidth: 3,
+          valueColor: AlwaysStoppedAnimation(theme_color.indicatorWaterColor),
           center: Text(
             indicatorValue.toString() + '%',
-            style: const TextStyle(
-                color: Colors.white,
+            style: TextStyle(
+                color: theme_color.background,
                 fontSize: 45,
                 fontFamily: fontGotham,
                 fontWeight: FontWeight.w900),
           ),
-          backgroundColor: const Color(0xff003459),
+          backgroundColor: theme_color.indicatorBackgroundColor,
         ),
       )),
       floatingActionButton: FloatingActionButton(
           onPressed: () {},
           isExtended: true,
-          backgroundColor: const Color(0xff3A4750),
-          child: const Icon(
+          backgroundColor: theme_color.secondaryColor,
+          child: Icon(
             Icons.add,
-            color: Colors.white,
+            color: theme_color.background,
+            size: 28,
           )),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
